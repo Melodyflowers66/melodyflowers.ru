@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melody - Магазин цветов</title>
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+        }
+
+        /* Шапка */
+        header {
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: #e91e63;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        /* Главный баннер */
+        .hero {
+            background: linear-gradient(45deg, #f8bbd0, #fce4ec);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+
+        /* Секция с товарами */
+        .products {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-price {
+            color: #e91e63;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background: #e91e63;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Футер */
+        footer {
+            background: #2d2d2d;
+            color: white;
+            padding: 50px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Melody</a>
+            <nav>
+                <a href="#home">Главная</a>
+                <a href="#catalog">Каталог</a>
+                <a href="#about">О нас</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Прекрасные цветы для ваших моментов</h1>
+        <p>Доставка свежих цветов по городу 24/7</p>
+    </section>
+
+    <section class="products">
+        <h2>Популярные букеты</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200x200" alt="Букет Розы" class="product-image">
+                <h3>Розовая нежность</h3>
+                <p class="product-price">2 499 ₽</p>
+                <button class="btn">В корзину</button>
+            </div>
+            <!-- Добавьте больше товаров аналогичным образом -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>Контакты</h4>
+                <p>Телефон: +7 (999) 123-45-67</p>
+                <p>Адрес: ул. Цветочная, 12</p>
+            </div>
+            <div>
+                <h4>Соцсети</h4>
+                <a href="#">Instagram</a><br>
+                <a href="#">VK</a><br>
+                <a href="#">Facebook</a>
+            </div>
+            <div>
+                <h4>О нас</h4>
+                <p>Melody - сеть цветочных магазинов с 2010 года</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Базовая логика корзины
+        let cart = [];
+
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+
+        function addToCart(event) {
+            const product = {
+                name: event.target.parentElement.querySelector('h3').innerText,
+                price: event.target.parentElement.querySelector('.product-price').innerText
+            };
+            cart.push(product);
+            updateCartCounter();
+        }
+
+        function updateCartCounter() {
+            const counter = document.getElementById('cart-counter');
+            if (counter) {
+                counter.innerText = cart.length;
+            }
+        }
+    </script>
+</body>
+</html>
